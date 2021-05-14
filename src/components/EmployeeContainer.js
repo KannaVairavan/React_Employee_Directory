@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchForm from "./SearchForm";
-import API from "../utils/API";
+import API from "./utils/API";
 
 class EmployeeContainer extends Component {
     state = {
