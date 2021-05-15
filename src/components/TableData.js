@@ -12,8 +12,8 @@ function TableData(props) {
                         <th scope="col" onClick={props.sortPhone}>Phone</th>
                         <th scope="col" onClick={props.sortEmail}>Email</th>
                         <th scope="col" onClick={props.sortDob}>DOB</th> */}
-                        <th scope="col" >Name</th>
-                        <th scope="col" >Phone</th>
+                        <th scope="col" onClick={props.sortName} >Name</th>
+                        <th scope="col" onClick={props.sortPhone}>Phone</th>
                         <th scope="col" >Email</th>
                         <th scope="col" >DOB</th>
                     </tr>

@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import SearchForm from "./SearchForm";
 import API from "./utils/API";
 import TableData from "./TableData";
+import HeaderSection from "./Header"
 
 class EmployeeContainer extends Component {
     state = {
       results: [],
       search: "",
-      ascending:true,
-      resultsforDisplay:[]
+      sortedBy:"ascending",
+    //   resultsforDisplay:[]
 
     };
   
@@ -41,32 +42,78 @@ class EmployeeContainer extends Component {
             resultsforDisplay:searchedEmployee
         })
     }  
+
     handleInputChange = event => {
         const value = event.target.value;
         console.log("handleInputChange value",value);
       
-        this.setState({search: value},()=>this.searchEmployee());
+        const searchedEmployee=this.state.results.filter((employee)=>
+        employee.name.first.startsWith(`${value}`))
+
+        this.setState({
+            search: value,
+            results:searchedEmployee
+        });
+        
     };
+
+
     
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
     handleFormSubmit = event => {
         event.preventDefault();
-        this.getEmployee(this.state.search);
         
     };
+
+    sortName=(event)=>{
+        event.preventDefault();
+        let sortedEmployee;
+        if (this.state.sortedBy ==='ascending'){
+            sortedEmployee=this.state.results.sort((a,b)=>
+            a.name.first > b.name.first ? 1:-1
+            );
+        }else {
+            sortedEmployee=this.state.results.sort((a,b)=>
+            a.name.first < b.name.first ? 1:-1
+            );
+        }
+        this.setState({
+            results:sortedEmployee
+        })
+    }
+
+    sortPhone=(event)=>{
+        event.preventDefault();
+        let sortedByPhone;
+        if (this.state.sortedBy ==='ascending'){
+            sortedByPhone=this.state.results.sort((a,b)=>
+            a.phone.first > b.name.phone ? 1:-1
+            );
+        }else {
+            sortedByPhone=this.state.results.sort((a,b)=>
+            a.name.phone < b.name.phone ? 1:-1
+            );
+        }
+        this.setState({
+            results:sortedByPhone
+        })
+    }
+        
+    
     render(){
        
         
         return(
             <div>
+               <HeaderSection/>
                <SearchForm
-                search={this.state.search}
+                value={this.state.search}
                 
                 handleInputChange={this.handleInputChange}
-                handleFormSubmit={this.handleFormSubmit}
+                // handleFormSubmit={this.handleFormSubmit}
 
                 />
-                <TableData results={this.state.resultsforDisplay} />
+                <TableData results={this.state.results} sortName={this.sortName} sortPhone={this.sortPhone}/>
             </div>
         );
     }
