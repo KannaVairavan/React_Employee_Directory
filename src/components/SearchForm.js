@@ -2,21 +2,27 @@ import React from "react";
 
 function SearchForm(props) {
   return (
-    <form>
-      <div className="form">
-        
-        <input
-          onChange={props.handleInputChange}
-          value={props.value}
-          name="search"
-          type="text"
-          className="form-control"
-          placeholder="Search For a Employee"
-          id="search"
-        />
-       
-      </div>
-    </form>
+    <div className="searchbox">
+      <br></br>
+      
+              <form>
+                <div className="form-group">
+               
+                  <input
+                    onChange={props.handleInputChange}
+                    value={props.value}
+                    name="search"
+                    type="text"
+                    className="form-control"
+                    placeholder="Search for a employee name"
+                    id="search"
+                  />
+                
+                </div>
+              </form>
+            
+        <br></br>
+    </div>
   );
 }
 

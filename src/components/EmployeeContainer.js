@@ -8,7 +8,7 @@ class EmployeeContainer extends Component {
     state = {
       results: [],
       search: "",
-      sortedBy:"ascending",
+      sortedBy:"",
     //   resultsforDisplay:[]
 
     };
@@ -59,22 +59,29 @@ class EmployeeContainer extends Component {
 
 
     
-  // When the form is submitted, search the OMDB API for the value of `this.state.search`
-    handleFormSubmit = event => {
-        event.preventDefault();
-        
-    };
+  
 
     sortName=(event)=>{
         event.preventDefault();
         let sortedEmployee;
-        if (this.state.sortedBy ==='ascending'){
+        console.log(this.state.sortedBy);
+        if (this.state.sortedBy ==="") {
+            this.setState({ sortedBy: "ascending" })
             sortedEmployee=this.state.results.sort((a,b)=>
-            a.name.first > b.name.first ? 1:-1
+            a.name.first < b.name.first ? -1:1
             );
-        }else {
+        }
+        else if (this.state.sortedBy ==='descending'){
+            this.setState({ sortedBy: "ascending" })
             sortedEmployee=this.state.results.sort((a,b)=>
-            a.name.first < b.name.first ? 1:-1
+            a.name.first < b.name.first ? -1:1
+            );
+
+        }
+        else {
+            this.setState({ sortedBy: "descending" })
+            sortedEmployee=this.state.results.sort((a,b)=>
+            a.name.first >b.name.first ? -1:1
             );
         }
         this.setState({
@@ -82,22 +89,7 @@ class EmployeeContainer extends Component {
         })
     }
 
-    sortPhone=(event)=>{
-        event.preventDefault();
-        let sortedByPhone;
-        if (this.state.sortedBy ==='ascending'){
-            sortedByPhone=this.state.results.sort((a,b)=>
-            a.phone.first > b.name.phone ? 1:-1
-            );
-        }else {
-            sortedByPhone=this.state.results.sort((a,b)=>
-            a.name.phone < b.name.phone ? 1:-1
-            );
-        }
-        this.setState({
-            results:sortedByPhone
-        })
-    }
+    
         
     
     render(){
@@ -110,10 +102,17 @@ class EmployeeContainer extends Component {
                 value={this.state.search}
                 
                 handleInputChange={this.handleInputChange}
-                // handleFormSubmit={this.handleFormSubmit}
+                
 
                 />
-                <TableData results={this.state.results} sortName={this.sortName} sortPhone={this.sortPhone}/>
+                <TableData 
+                results={this.state.results} 
+                sortName={this.sortName} 
+                // sortPhone={this.sortPhone}
+                // sortEmail={this.sortEmail}
+                // sortDob={this.sortDob}
+                
+                />
             </div>
         );
     }

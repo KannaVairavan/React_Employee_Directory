@@ -8,12 +8,9 @@ function TableData(props) {
                 <thead>
                     <tr>
                         <th scope="col">Image</th>
-                        {/* <th scope="col" onClick={props.sortName}>Name</th>
-                        <th scope="col" onClick={props.sortPhone}>Phone</th>
-                        <th scope="col" onClick={props.sortEmail}>Email</th>
-                        <th scope="col" onClick={props.sortDob}>DOB</th> */}
+                        
                         <th scope="col" onClick={props.sortName} >Name</th>
-                        <th scope="col" onClick={props.sortPhone}>Phone</th>
+                        <th scope="col" >Phone</th>
                         <th scope="col" >Email</th>
                         <th scope="col" >DOB</th>
                     </tr>
@@ -21,7 +18,7 @@ function TableData(props) {
                 <tbody>
                    
                     {props.results.map(result => (
-                        <tr key={result.index}>
+                        <tr key={result.name.first}>
                             <td><img alt="thumbnail" className="img-fluid" src={result.picture.thumbnail} /></td>
                             <td>{result.name.first + " " + result.name.last}</td>
                             <td>{result.phone}</td>
