@@ -6,7 +6,10 @@ import TableData from "./TableData";
 class EmployeeContainer extends Component {
     state = {
       results: [],
-      search: ""
+      search: "",
+      ascending:true,
+      resultsforDisplay:[]
+
     };
   
     // When this component mounts, search for the movie "The Matrix"
@@ -17,21 +20,31 @@ class EmployeeContainer extends Component {
     getEmployee = query => {
         console.log(query);
         API.search(query)
-        .then(res => this.setState({ results: res.data.results }))
+        .then(res => this.setState({ 
+            results: res.data.results,
+            resultsforDisplay: res.data.results 
+
+        }))
         .catch(err => console.log(err));
     };
 
-        
+    searchEmployee=()  =>{
+        const searchedEmployee=this.state.results.filter((employee)=>{
+            let fullName= employee.name.first + " " + employee.name.last;
+
+            return(fullName.includes(this.state.search));
+        })
+        this.setState({
+            resultsforDisplay:searchedEmployee
+        })
+    }  
     handleInputChange = event => {
         const value = event.target.value;
-        const name = event.target.name;
-        this.setState({
-        [name]: value
-        });
+        console.log("handleInputChange value",value);
+      
+        this.setState({search: value},()=>this.searchEmployee());
     };
-    sortname(){
-
-    }
+    
   // When the form is submitted, search the OMDB API for the value of `this.state.search`
     handleFormSubmit = event => {
         event.preventDefault();
@@ -47,6 +60,7 @@ class EmployeeContainer extends Component {
                 search={this.state.search}
                 
                 handleInputChange={this.handleInputChange}
+                handleFormSubmit={this.handleFormSubmit}
 
                 />
                 <TableData results={this.state.results} />
