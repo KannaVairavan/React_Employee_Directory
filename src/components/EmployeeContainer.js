@@ -21,6 +21,7 @@ class EmployeeContainer extends Component {
         console.log(query);
         API.search(query)
         .then(res => this.setState({ 
+            
             results: res.data.results,
             resultsforDisplay: res.data.results 
 
@@ -29,11 +30,13 @@ class EmployeeContainer extends Component {
     };
 
     searchEmployee=()  =>{
+        console.log(this.state.results);
         const searchedEmployee=this.state.results.filter((employee)=>{
             let fullName= employee.name.first + " " + employee.name.last;
 
             return(fullName.includes(this.state.search));
         })
+        console.log("Searched Employee is ", searchedEmployee)
         this.setState({
             resultsforDisplay:searchedEmployee
         })
@@ -63,7 +66,7 @@ class EmployeeContainer extends Component {
                 handleFormSubmit={this.handleFormSubmit}
 
                 />
-                <TableData results={this.state.results} />
+                <TableData results={this.state.resultsforDisplay} />
             </div>
         );
     }
