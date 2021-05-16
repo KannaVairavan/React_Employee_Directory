@@ -6,11 +6,13 @@
 
 ## Summary
 
-This application is a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. This site is deployed to Heroku. This app follows
-the MVC paradigm in its architectural structure, using Handlebars.js as the templating language,
-Sequelize as the ORM, and the express-session npm package for authentication.
+This application renders employee directory from https://randomuser.me/ API. The user has option to sort and filter employee name. This app is built using React.
+axios NPM package is needed to fetch the API. This site is deployed to Heroku.
 
 ## Installation:
+
+Clone the repository https://github.com/KannaVairavan/React_Employee_Directory.git
+run npm i to install dependencies.
 
 ## Acceptance Criteria
 
@@ -26,10 +28,15 @@ The user should be able to:
 
 ## Project Demo
 
-Below is the walkthrough video that demonstrates the functionality of theEmployee Directory app.<br/>
+<br>
+
 <img src="./assets/EmployeeDirectory.png">
 
-<img src="./assets/TechBlog.gif" alt="Readme video"  >
+<br>
+Below is the walkthrough video that demonstrates the functionality of theEmployee Directory app.
+<br/>
+<br/>
+<img src="./assets/employeeDirectory.gif" alt="Readme video"  >
 
 ## Repository
 
