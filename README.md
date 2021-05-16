@@ -30,9 +30,6 @@ The user should be able to:
 
 <br>
 
-<img src="./assets/EmployeeDirectory.png">
-
-<br>
 Below is the walkthrough video that demonstrates the functionality of theEmployee Directory app.
 <br/>
 <br/>
